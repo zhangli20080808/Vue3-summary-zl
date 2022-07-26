@@ -1,41 +1,31 @@
 <script setup lang="ts">
-import { AddCircle } from '@vicons/ionicons5'
-import { ref } from 'vue'
-
-function createData(level = 4, parentKey = ''): any {
-  if (!level) return []
-  const arr = new Array(6 - level).fill(0)
-  return arr.map((_, idx: number) => {
-    const key = parentKey + level + idx
-    return {
-      xx: createLabel(level), // 显示的内容
-      key, // 为了唯一性
-      children: createData(level - 1, key) // 孩子
-    }
-  })
-}
-function createLabel(level: number): string {
-  if (level === 4) return '道生一'
-  if (level === 3) return '一生二'
-  if (level === 2) return '二生三'
-  if (level === 1) return '三生万物'
-  return ''
-}
-const data = ref(createData())
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <z-icon :color="'red'" :size="40">
-    <AddCircle></AddCircle>
-  </z-icon>
-  <z-icon :color="'yellow'" :size="40">
-    <AddCircle></AddCircle>
-  </z-icon>
-  <!-- 在使用树组件的时候 会传递一个树型的结构 -->
-  <z-tree
-    :data="data"
-    label-field="xx"
-    key-field="key"
-    children-field="children"
-  ></z-tree>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <HelloWorld msg="Vite + Vue" />
 </template>
+
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>

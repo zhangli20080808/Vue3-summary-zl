@@ -42,3 +42,9 @@ pnpm install @zhangli-hua/utils -w
 pnpm install @zhangli-hua/theme-chalk -w
 
 ```
+### 新建测试项目
+```js
+pnpm create vite play --template vue-ts
+// 根目录 执行 包的命令
+"dev": "pnpm -C play dev"
+```

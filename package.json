@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm -C play dev"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +13,6 @@
     "@zhangli-hua/components": "workspace:*",
     "@zhangli-hua/theme-chalk": "workspace:*",
     "@zhangli-hua/utils": "workspace:*",
-    "components": "link:@@zhangli-hua/components",
     "typescript": "^4.7.4",
     "vue": "^3.2.37"
   }
