@@ -1,12 +1,22 @@
 lockfileVersion: 5.4
 
-specifiers:
-  typescript: ^4.7.4
-  vue: ^3.2.37
+importers:
 
-dependencies:
-  typescript: 4.7.4
-  vue: 3.2.37
+  .:
+    specifiers:
+      '@zhangli-hua/components': workspace:*
+      '@zhangli-hua/theme-chalk': workspace:^1.0.0
+      '@zhangli-hua/utils': workspace:^1.0.0
+      components: link:@@zhangli-hua/components
+      typescript: ^4.7.4
+      vue: ^3.2.37
+    dependencies:
+      '@zhangli-hua/components': link:packages/components
+      '@zhangli-hua/theme-chalk': link:packages/theme-chalk
+      '@zhangli-hua/utils': link:packages/utils
+      components: link:@@zhangli-hua/components
+      typescript: 4.7.4
+      vue: 3.2.37
 
 packages:
 

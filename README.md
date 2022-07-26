@@ -23,7 +23,7 @@ pnpm install
 pnpm tsc / npx tsc --init
 
 ```
-### 多仓库管理
+### 多仓库管理-搭建 monorepo 环境
 ```js
 touch .pnpm-workspace
 // 配置内容
@@ -35,6 +35,10 @@ packages:
 cd packages/components
 pnpm init
 // play、utils、theme-chalk等都需要 package.json
+// 将packages下的包安装到全局
 cd 根目录
-pnpm init @@zhangli-cli-dev/components
+pnpm install @zhangli-hua/components -w
+pnpm install @zhangli-hua/utils -w
+pnpm install @zhangli-hua/theme-chalk -w
+
 ```

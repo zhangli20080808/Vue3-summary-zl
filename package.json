@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@zhangli-hua/components": "workspace:*",
+    "@zhangli-hua/theme-chalk": "workspace:*",
+    "@zhangli-hua/utils": "workspace:*",
+    "components": "link:@@zhangli-hua/components",
     "typescript": "^4.7.4",
     "vue": "^3.2.37"
   }
