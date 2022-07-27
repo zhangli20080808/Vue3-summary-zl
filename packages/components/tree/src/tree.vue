@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed } from '@vue/reactivity'
-import { createNamespace } from '@zi-shui/utils/create'
+import { createNamespace } from '@zhangli-hua/utils/create'
 import { ref, watch } from 'vue'
 import { TreeNode, TreeOption, treeProps } from './tree'
 import ZTreeNode from './treeNode.vue'

@@ -64,15 +64,15 @@ export function createNamespace(name: string) {
   const prefixName = `z-${name}`;
   return createBEM(prefixName);
 }
-const bem = createNamespace("icon");
-console.log(bem.b("box"));
-console.log(bem.e('element'));
-console.log(bem.m('modifier'));
-console.log(bem.bem('box','element','modifier'));
-console.log(bem.is('checked',true));
-console.log(bem.be('box','element'));
-console.log(bem.bm('box','modifier'));
-console.log(bem.em('element','modifier'));
+// const bem = createNamespace("icon");
+// console.log(bem.b("box"));
+// console.log(bem.e('element'));
+// console.log(bem.m('modifier'));
+// console.log(bem.bem('box','element','modifier'));
+// console.log(bem.is('checked',true));
+// console.log(bem.be('box','element'));
+// console.log(bem.bm('box','modifier'));
+// console.log(bem.em('element','modifier'));
 // z-icon-box
 // z-icon__element
 // z-icon--modifier

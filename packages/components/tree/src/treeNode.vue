@@ -23,8 +23,8 @@
 
 <script lang="ts" setup>
 import Switcher from './icon/Switcher'
-import ZIcon from '@zi-shui/components/icon'
-import { createNamespace } from '@zi-shui/utils/create'
+import ZIcon from '@zhangli-hua/components/icon'
+import { createNamespace } from '@zhangli-hua/utils/create'
 import { treeNodeEmitts, treeNodeProps } from './tree'
 const bem = createNamespace('tree-node')
 const props = defineProps(treeNodeProps)
