@@ -48,3 +48,57 @@ pnpm create vite play --template vue-ts
 // 根目录 执行 包的命令
 "dev": "pnpm -C play dev"
 ```
+### scss编写
+1. 目录结构
+```js
+theme-chalk
+    src
+        mixins
+            config.scss // BEM规范命名
+```
+2. .sass配置
+```js
+// mixins/config.scss
+$namespace: 'z';
+$element-separator: '__';
+$modifier-separator:'--';
+$state-prefix:'is-';
+
+// mixins/mixins.scss mport语法可能有多次引入的缺陷，use相对比较好 将config包引入，且导出
+@use "config" as *;  
+@forward "config";
+// @include b(button){ 用法
+//   color:red
+// }
+// .z-button{}   
+@mixin b($block) {
+  $B: $namespace + "-" + $block;
+  .#{$B} {
+    @content;
+  }
+}
+// .z-button.is-desiabled
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+// &--primary => .z-button--primary
+@mixin m($modifier) {
+  @at-root {
+    #{& + $modifier-separator + $modifier} {
+      @content;
+    }
+  }
+}
+// &__header  => .z-button__header
+@mixin e($element) {
+  @at-root {
+    #{& + $element-separator + $element} {
+      @content;
+    }
+  }
+}
+```
