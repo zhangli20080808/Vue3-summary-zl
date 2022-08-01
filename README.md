@@ -153,3 +153,9 @@ indent_style = space
 indent_size = 2
 end_of_line = lf
 ```
+
+### 文档搭建
+
+```js
+pnpm install vitepress -D
+```
