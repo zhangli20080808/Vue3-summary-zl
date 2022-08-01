@@ -159,3 +159,58 @@ end_of_line = lf
 ```js
 pnpm install vitepress -D
 ```
+
+### Tree 组件
+
+1. Tree 类型的定义
+
+- 变量定义，需要借助 ExtractPropTypes 和 PropType
+
+```ts
+// tree.ts
+import { ExtractPropTypes, PropType } from 'vue'
+export const treeProps = {
+  // props 是仅读的 PropType-指定类型的内容，data的组成部分
+  data: {
+    type: Array as PropType<TreeOption[]>,
+    default: () => []
+  },
+  defaultExpandedKeys: {
+    type: Array as PropType<Key[]>,
+    default: () => []
+  },
+  labelField: {
+    type: String,
+    default: 'label'
+  },
+  keyField: {
+    type: String,
+    default: 'key'
+  },
+  childrenField: {
+    type: String,
+    default: 'children'
+  }
+} as const // 需要转化成常量，因为props是只读的
+```
+
+- 组件接受，使用 defineProps
+
+```vue
+// tree.vue
+<script lang="ts" setup>
+const props = defineProps(treeProps)
+</script>
+```
+
+2. 外部传入数据进行格式化处理，格式化成固定的结果
+
+```vue
+<!-- label key children -->
+<z-tree
+  :data="data"
+  label-field="xx"
+  key-field="key"
+  children-field="children"
+></z-tree>
+```

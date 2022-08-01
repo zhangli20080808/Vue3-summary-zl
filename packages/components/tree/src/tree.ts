@@ -17,7 +17,7 @@ export interface TreeOption {
   [key: string]: unknown // 任意的接口
 }
 export const treeProps = {
-  // props 是仅读的
+  // props 是仅读的 PropType-指定类型的内容，data的组成部分
   data: {
     type: Array as PropType<TreeOption[]>,
     default: () => []
@@ -38,7 +38,7 @@ export const treeProps = {
     type: String,
     default: 'children'
   }
-} as const
+} as const // 需要转化成常量，因为props是只读的
 
 export const treeNodeProps = {
   node: {

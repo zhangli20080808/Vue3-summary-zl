@@ -1,7 +1,6 @@
 <template>
   <div :class="bem.b()">
     <!-- 模版有自带的优化，如果自定义比较强的我们采用 tsx来编写 -->
-
     <z-tree-node
       v-for="node in flattenTree"
       :key="node.key"
@@ -22,7 +21,7 @@ import ZTreeNode from './treeNode.vue'
 const bem = createNamespace('tree')
 
 defineOptions({
-  name: 'z-tree'
+  name: 'z-tree' // 定义组件名字
 })
 
 const props = defineProps(treeProps)

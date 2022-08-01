@@ -22,22 +22,23 @@ function createLabel(level: number): string {
   return ''
 }
 const data = ref(createData())
+console.log(data, 'init-data')
 </script>
 
 <template>
   <!-- <Icon :color="" :size=""></Icon> -->
-  <z-icon :color="'red'" :size="40"> hello world </z-icon>
-  <z-icon :color="'yellow'" :size="20">
-    <AddCircle></AddCircle>
-  </z-icon>
+  <!-- <z-icon :color="'red'" :size="40"> hello world </z-icon> -->
+  <!-- <z-icon :color="'yellow'" :size="20"> -->
+  <!-- <AddCircle></AddCircle> -->
+  <!-- </z-icon> -->
   <!-- <z-icon :color="'yellow'" :size="40"> -->
   <!-- <AddCircle></AddCircle>
   </z-icon> -->
   <!-- 在使用树组件的时候 会传递一个树型的结构 -->
-  <!-- <z-tree
+  <z-tree
     :data="data"
     label-field="xx"
     key-field="key"
     children-field="children"
-  ></z-tree> -->
+  ></z-tree>
 </template>
