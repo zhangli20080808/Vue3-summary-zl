@@ -13,27 +13,27 @@ $ pnpm install @vicons/ionicons5
 <script setup lang="ts">
 import { CashOutline } from '@vicons/ionicons5'
 </script>
-<z-icon color="red" size="40">
+<z-icon color="red" size="10">
   <CashOutline/>
 </z-icon>
 
-<z-icon color="green" size="40">
+<z-icon color="green" size="10">
   <CashOutline/>
 </z-icon>
-<z-icon color="blue" size="40">
+<z-icon color="blue" size="10">
   <CashOutline/>
 </z-icon>
 <div>
 
-<z-icon color="red" size="60">
+<z-icon color="red" size="20">
   <CashOutline/>
 </z-icon>
 
-<z-icon color="green" size="60">
+<z-icon color="green" size="20">
   <CashOutline/>
 </z-icon>
 
-<z-icon color="blue" size="60">
+<z-icon color="blue" size="20">
   <CashOutline/>
 </z-icon>
 </div>
