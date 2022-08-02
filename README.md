@@ -206,6 +206,9 @@ const props = defineProps(treeProps)
 2. 外部传入数据进行格式化处理，格式化成固定的结果
 
 ```vue
+1. 创建格式化方法 createTree、traversal 深度遍历，摊平整棵树，做后续虚拟树滚动
+2. watch 监听格式化之后的数据，动赋值给 ref 对象
+
 <!-- label key children -->
 <z-tree
   :data="data"
