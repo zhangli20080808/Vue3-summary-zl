@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { AddCircle } from '@vicons/ionicons5'
+// import { AddCircle } from '@vicons/ionicons5'
+import { TreeOption } from '@zhangli-hua/components/tree/src/tree'
 import { ref } from 'vue'
 
-function createData(level = 4, parentKey = ''): any {
-  if (!level) return []
-  const arr = new Array(6 - level).fill(0)
-  return arr.map((_, idx: number) => {
-    const key = parentKey + level + idx
-    return {
-      xx: createLabel(level), // 显示的内容
-      key, // 为了唯一性
-      children: createData(level - 1, key) // 孩子
-    }
-  })
-}
+// function createData(level = 4, parentKey = ''): any {
+//   if (!level) return []
+//   const arr = new Array(6 - level).fill(0)
+//   return arr.map((_, idx: number) => {
+//     const key = parentKey + level + idx
+//     return {
+//       xx: createLabel(level), // 显示的内容
+//       key, // 为了唯一性
+//       children: createData(level - 1, key) // 孩子
+//     }
+//   })
+// }
 function createLabel(level: number): string {
   if (level === 4) return '道生一'
   if (level === 3) return '一生二'
@@ -21,8 +22,51 @@ function createLabel(level: number): string {
   if (level === 1) return '三生万物'
   return ''
 }
+function createData() {
+  return [
+    {
+      label: nextLabel(),
+      key: 1,
+      isLeaf: false // 这里isLeaf 为false 表示点击的时候动态的加载子节点
+    },
+    {
+      label: nextLabel(),
+      key: 2,
+      isLeaf: false
+    }
+  ]
+}
+function nextLabel(currentLabel?: string | number): string {
+  if (!currentLabel) return 'Out of Tao, One is born'
+  if (currentLabel === 'Out of Tao, One is born') return 'Out of One, Two'
+  if (currentLabel === 'Out of One, Two') return 'Out of Two, Three'
+  if (currentLabel === 'Out of Two, Three') {
+    return 'Out of Three, the created universe'
+  }
+  if (currentLabel === 'Out of Three, the created universe') {
+    return 'Out of Tao, One is born'
+  }
+  return ''
+}
+
 const data = ref(createData())
 console.log(data, 'init-data')
+
+const handleLoad = (node: TreeOption) => {
+  // 内部肯定需要将展开的节点传递给我
+  return new Promise<TreeOption[]>((resolve, reject) => {
+    setTimeout(() => {
+      resolve([
+        // 这个数据会作为当前展开的node的children属性
+        {
+          label: nextLabel(node.label),
+          key: node.key + nextLabel(node.label),
+          isLeaf: false
+        }
+      ])
+    }, 1000)
+  })
+}
 </script>
 
 <template>
@@ -35,10 +79,14 @@ console.log(data, 'init-data')
   <!-- <AddCircle></AddCircle>
   </z-icon> -->
   <!-- 在使用树组件的时候 会传递一个树型的结构 -->
-  <z-tree
+
+  <!-- <z-tree
     :data="data"
     label-field="xx"
     key-field="key"
     children-field="children"
-  ></z-tree>
+    :on-load="handleLoad"
+  ></z-tree> -->
+
+  <z-tree :data="data" :on-load="handleLoad"></z-tree>
 </template>

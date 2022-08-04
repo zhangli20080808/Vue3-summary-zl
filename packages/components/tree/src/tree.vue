@@ -6,6 +6,7 @@
       :key="node.key"
       :node="node"
       :expanded="isExpanded(node)"
+      :loading-keys="loadingKeysRef"
       @toggle="toggleExpand"
     >
     </z-tree-node>
@@ -15,6 +16,7 @@
 <script setup lang="ts">
 import { computed } from '@vue/reactivity'
 import { createNamespace } from '@zhangli-hua/utils/create'
+import { Key } from '@zhangli-hua/components/tree/src/tree'
 import { ref, watch } from 'vue'
 import { TreeNode, TreeOption, treeProps } from './tree'
 import ZTreeNode from './treeNode.vue'
@@ -50,7 +52,7 @@ const treeOptions = createOptions(
   props.labelField,
   props.childrenField
 )
-function createTree(data: TreeOption[]) {
+function createTree(data: TreeOption[], parent: TreeNode | null = null) {
   function traversal(data: TreeOption[], parent: TreeNode | null = null) {
     return data.map(node => {
       const children = treeOptions.getChildren(node) || []
@@ -71,7 +73,7 @@ function createTree(data: TreeOption[]) {
       return treeNode
     })
   }
-  const result: TreeNode[] = traversal(data)
+  const result: TreeNode[] = traversal(data, parent)
   return result
 }
 // 监控数据变化，调用格式化方法。 一上来先格式化一次
@@ -124,14 +126,41 @@ function isExpanded(node: TreeNode): boolean {
 function collpase(node: TreeNode) {
   expandedKeysSet.value.delete(node.key)
 }
+const loadingKeysRef = ref(new Set<Key>())
+// 可以同时异步加载多个节点
+
+function triggerLoading(node: TreeNode) {
+  // 这个节点需要异步加载
+  if (!node.children.length && !node.isLeaf) {
+    // 如果没有加载过这个节点 就加载这个节点
+    const loadingKeys = loadingKeysRef.value
+    if (!loadingKeys.has(node.key)) {
+      loadingKeys.add(node.key)
+      const onLoad = props.onLoad
+      if (onLoad) {
+        onLoad(node.rawNode).then(children => {
+          // 修改原来的节点
+          node.rawNode.children = children
+          // 更新自定义的node
+          node.children = createTree(children, node)
+          loadingKeys.delete(node.key)
+        })
+      }
+    }
+  }
+}
 // 展开功能
 function expand(node: TreeNode) {
   expandedKeysSet.value.add(node.key)
+  // 此处实现对应的onLoad的加载逻辑 不能疯狂点击，需要屏蔽 使用标识位解决
+  // 这里应该实现对应的加载逻辑
+  triggerLoading(node)
 }
 // 切换专刊
 function toggleExpand(node: TreeNode) {
   const expandKeys = expandedKeysSet.value
-  if (expandKeys.has(node.key)) {
+  // 当前节点正在加载中，不能收起
+  if (expandKeys.has(node.key) && !loadingKeysRef.value.has(node.key)) {
     collpase(node)
   } else {
     expand(node)

@@ -1,9 +1,19 @@
-@use 'mixins/mixins.scss' as *;
-
-@include b(icon){
-   display: inline-flex;
-   height: 1em;
-   width: 1em;
-   vertical-align: middle;
-   border: 1px solid green;
+@use "mixins/mixins.scss" as *;
+@keyframes transform {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@include b(icon) {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  vertical-align: middle;
+  margin-right: 4px;
+  svg.loading {
+    animation: transform 1s linear infinite;
+  }
 }
