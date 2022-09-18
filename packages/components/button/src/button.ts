@@ -9,7 +9,7 @@ import { ExtractPropTypes, PropType } from 'vue'
 // native-type 原生 type 属性
 // icon-placement 图标的位置
 
-export type Size = 'small' | 'middle' | 'large'
+export type Size = 'small' | 'medium' | 'large'
 export type Type =
   | 'primary'
   | 'success'
@@ -17,7 +17,7 @@ export type Type =
   | 'danger'
   | 'info'
   | 'text'
-export type NativeType = 'button' | 'submit' | 'reset'
+export type NativeTypes = 'button' | 'submit' | 'reset'
 export type Placement = 'left' | 'right'
 
 export const buttonProps = {
@@ -40,7 +40,7 @@ export const buttonProps = {
   loading: Boolean,
   disabled: Boolean,
   nativeType: {
-    type: String as PropType<NativeType>,
+    type: String as PropType<NativeTypes>,
     default: 'button'
   },
   iconPlacement: {

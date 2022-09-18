@@ -1,0 +1,69 @@
+@use 'mixins/mixins.scss';
+@use 'common/var.scss';
+
+@include b(button) {
+  //BEM规范
+  display: inline-flex;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  border-radius: 2px;
+  border: #fafafa;
+  user-select: none; // 不能选择文字
+  min-height: 40px;
+  line-height: 1;
+  vertical-align: middle;
+  padding: 0 20px;
+}
+
+@include m(medium) {
+  padding: 0 20px;
+}
+
+@include m(small) {
+  padding: 0 18px;
+}
+
+@include m(large) {
+  padding: 0 25px;
+}
+
+@include when(disabled) {
+  // 针对不同类型处理
+  &,
+  &:hover,
+  &:focus {
+    cursor: not-allowed;
+  }
+}
+
+@include m(primary) {
+  @include button-variant($color-white, $color-primary, $color-primary);
+}
+@include m(success) {
+  @include button-variant($color-white, $color-success, $color-success);
+}
+@include m(warning) {
+  @include button-variant($color-white, $color-warning, $color-warning);
+}
+@include m(danger) {
+  @include button-variant($color-white, $color-danger, $color-danger);
+}
+
+// $color-white: map.get($colors, 'white') !default;
+// $color-black: map.get($colors, 'black') !default;
+// $color-primary: map.get($colors, 'primary', 'base') !default;
+// $color-success: map.get($colors, 'success', 'base') !default;
+// $color-warning: map.get($colors, 'warning', 'base') !default;
+// $color-danger: map.get($colors, 'danger', 'base') !default;
+// $color-error: map.get($colors, 'error', 'base') !default;
+// $color-info: map.get($colors, 'info', 'base') !default;
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360);
+  }
+}
