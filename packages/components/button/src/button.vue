@@ -4,7 +4,7 @@ import { buttonProps } from './button'
 defineOptions({
   name: 'z-button'
 })
-const bem = createNamespace('button')
+const bem = createNamespace('button') // z-button
 const props = defineProps(buttonProps)
 </script>
 

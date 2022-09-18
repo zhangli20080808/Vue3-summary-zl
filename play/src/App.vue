@@ -89,5 +89,7 @@ const handleLoad = (node: TreeOption) => {
   ></z-tree> -->
 
   <z-tree :data="data" :on-load="handleLoad"></z-tree>
-  <!-- <z-button ></z-button> -->
+  <z-button type="primary" size="small" :round="true" :disabled="false">
+    vue3按钮
+  </z-button>
 </template>
