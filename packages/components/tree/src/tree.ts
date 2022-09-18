@@ -55,7 +55,7 @@ export const treeNodeProps = {
   }
 } as const
 
-export const treeNodeEmitts = {
+export const treeNodeEmits = {
   toggle: (node: TreeNode) => node
 }
 

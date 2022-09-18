@@ -26,13 +26,13 @@
 import Switcher from './icon/Switcher'
 import ZIcon from '@zhangli-hua/components/icon'
 import { createNamespace } from '@zhangli-hua/utils/create'
-import { treeNodeEmitts, treeNodeProps } from './tree'
+import { treeNodeEmits, treeNodeProps } from './tree'
 import Loading from './icon/Loading'
 import { computed } from 'vue'
 const bem = createNamespace('tree-node')
 const props = defineProps(treeNodeProps)
 
-const emit = defineEmits(treeNodeEmitts)
+const emit = defineEmits(treeNodeEmits)
 function handleExpand() {
   emit('toggle', props.node)
 }
