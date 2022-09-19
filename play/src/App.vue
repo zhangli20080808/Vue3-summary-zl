@@ -107,4 +107,18 @@ const handleClick = e => {
       </z-icon>
     </template>
   </z-button>
+  <z-input>
+    <template #prepend>前缀</template>
+    <template #prefixIcon>
+      <z-icon>
+        <AddCircle></AddCircle>
+      </z-icon>
+    </template>
+    <template #sufixIcon>
+      <z-icon>
+        <AddCircle></AddCircle>
+      </z-icon>
+    </template>
+    <template #append> 后缀 </template>
+  </z-input>
 </template>
