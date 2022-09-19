@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { AddCircle } from '@vicons/ionicons5'
+import { AddCircle } from '@vicons/ionicons5'
 import { TreeOption } from '@zhangli-hua/components/tree/src/tree'
 import { ref } from 'vue'
 
@@ -67,6 +67,9 @@ const handleLoad = (node: TreeOption) => {
     }, 1000)
   })
 }
+const handleClick = e => {
+  console.log('click')
+}
 </script>
 
 <template>
@@ -89,7 +92,19 @@ const handleLoad = (node: TreeOption) => {
   ></z-tree> -->
 
   <z-tree :data="data" :on-load="handleLoad"></z-tree>
-  <z-button type="primary" size="small" :round="true" :disabled="false">
+  <z-button
+    type="primary"
+    size="small"
+    :round="true"
+    :disabled="false"
+    icon-placement="left"
+    @click="handleClick"
+  >
     vue3按钮
+    <template #icon>
+      <z-icon>
+        <AddCircle></AddCircle>
+      </z-icon>
+    </template>
   </z-button>
 </template>

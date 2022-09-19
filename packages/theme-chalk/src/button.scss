@@ -14,48 +14,49 @@
   line-height: 1;
   vertical-align: middle;
   padding: 0 20px;
-}
 
-@include m(medium) {
-  padding: 0 20px;
-}
+  @include m(medium) {
+    padding: 0 20px;
+  }
 
-@include m(small) {
-  padding: 0 18px;
-}
+  @include m(small) {
+    padding: 0 18px;
+  }
 
-@include m(large) {
-  padding: 0 25px;
-}
+  @include m(large) {
+    padding: 0 25px;
+  }
 
-@include when(disabled) {
-  // 针对不同类型处理
-  &,
-  &:hover,
-  &:focus {
-    cursor: not-allowed;
+  @include when(disabled) {
+    // 针对不同类型处理
+    &,
+    &:hover,
+    &:focus {
+      cursor: not-allowed;
+    }
+  }
+
+  @include when(round) {
+    border-radius: 20px;
+  }
+
+  @include m(primary) {
+    @include button-variant($color-white, $color-primary, $color-primary);
+  }
+  @include m(success) {
+    @include button-variant($color-white, $color-success, $color-success);
+  }
+  @include m(warning) {
+    @include button-variant($color-white, $color-warning, $color-warning);
+  }
+  @include m(danger) {
+    @include button-variant($color-white, $color-danger, $color-danger);
+  }
+  @include m(info) {
+    @include button-variant($color-white, $color-info, $color-info);
   }
 }
 
-@include when(round){
-  border-radius: 20px;
-}
-
-@include m(primary) {
-  @include button-variant($color-white, $color-primary, $color-primary);
-}
-@include m(success) {
-  @include button-variant($color-white, $color-success, $color-success);
-}
-@include m(warning) {
-  @include button-variant($color-white, $color-warning, $color-warning);
-}
-@include m(danger) {
-  @include button-variant($color-white, $color-danger, $color-danger);
-}
-@include m(info) {
-  @include button-variant($color-white, $color-info, $color-info);
-}
 @keyframes rotate {
   from {
     transform: rotate(0);

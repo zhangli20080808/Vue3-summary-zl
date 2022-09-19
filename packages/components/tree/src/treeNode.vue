@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts" setup>
-import Switcher from './icon/Switcher'
+import Switcher from '@zhangli-hua/components/internal-icon/Switcher'
 import ZIcon from '@zhangli-hua/components/icon'
 import { createNamespace } from '@zhangli-hua/utils/create'
 import { treeNodeEmits, treeNodeProps } from './tree'
-import Loading from './icon/Loading'
+import Loading from '@zhangli-hua/components/internal-icon/Loading'
 import { computed } from 'vue'
 const bem = createNamespace('tree-node')
 const props = defineProps(treeNodeProps)
