@@ -218,3 +218,33 @@ const props = defineProps(treeProps)
   children-field="children"
 ></z-tree>
 ```
+
+### ref 和 reactive 从 ts 本质上来看，其实是一种东西
+
+```ts
+export declare function ref<T>(value: T): Ref<UnwrapRef<T>>
+export declare function reactive<T extends object>(
+  target: T
+): UnwrapNestedRefs<T>
+
+export declare type UnwrapNestedRefs<T> = T extends Ref ? T : UnwrapRef<T>
+
+export declare type UnwrapRef<T> = T extends Ref<infer V>
+  ? UnwrapRefSimple<V>
+  : UnwrapRefSimple<T>
+
+declare type UnwrapRefSimple<T> = T extends
+  | Function
+  | CollectionTypes
+  | BaseTypes
+  | Ref
+  | RefUnwrapBailTypes[keyof RefUnwrapBailTypes]
+  ? T
+  : T extends Array<any>
+  ? {
+      [K in keyof T]: UnwrapRefSimple<T[K]>
+    }
+  : T extends object
+  ? UnwrappedObject<T>
+  : T
+```
