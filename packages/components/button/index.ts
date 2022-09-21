@@ -1,5 +1,5 @@
 import { withInstall } from '@zhangli-hua/utils/with-install'
-import _Button from './src/button.vue'
+import _Button from './button.vue'
 
 const Button = withInstall(_Button)
 
@@ -11,4 +11,4 @@ declare module 'vue' {
   }
 }
 
-export * from './src/button'
+export * from './button'
