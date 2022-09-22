@@ -248,3 +248,13 @@ declare type UnwrapRefSimple<T> = T extends
   ? UnwrappedObject<T>
   : T
 ```
+
+## 组件拆分
+```
+basic: button icon Layout container
+Form: Input radio checkout DataPicker Upload
+Data: Table Tree Pagination
+Notice: Alert Loading Message
+Navigate: Tabs  Dropdown NavMenu
+other: Popover Dialog Carousel infiniteScroll
+```

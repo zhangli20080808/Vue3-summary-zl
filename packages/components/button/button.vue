@@ -7,7 +7,7 @@ defineOptions({
   name: 'z-button'
 })
 const bem = createNamespace('button') // z-button
-const props = defineProps(buttonProps)
+defineProps(buttonProps)
 const emit = defineEmits(buttonEmits)
 const slots = useSlots()
 const emitClick = (e: MouseEvent) => {

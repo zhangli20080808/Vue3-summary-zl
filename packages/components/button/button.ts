@@ -24,15 +24,20 @@ export const buttonProps = {
   size: String as PropType<Size>,
   type: {
     type: String as PropType<Type>,
-    validator: (val: string) => {
-      return [
-        'primary',
-        'success',
-        'warning',
-        'danger',
-        'info',
-        'text'
-      ].includes(val)
+    validator: (type: string) => {
+      if (
+        !['primary', 'success', 'warning', 'danger', 'info', 'text'].includes(
+          type
+        )
+      ) {
+        throw new Error(
+          `button type 只能是` +
+            ['primary', 'success', 'warning', 'danger', 'info', 'text'].join(
+              '、'
+            )
+        )
+      }
+      return true
     },
     default: ''
   },

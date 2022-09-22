@@ -1,3 +1,8 @@
+/**
+Button 组件是可以单独引用的
+import { Button } from 'zl-xxx'
+app.use(Button)
+*/
 import { withInstall } from '@zhangli-hua/utils/with-install'
 import _Button from './button.vue'
 
