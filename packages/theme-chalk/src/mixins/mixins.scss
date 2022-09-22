@@ -1,10 +1,10 @@
-@use "config" as *;
-@forward "config";
+@use 'config' as *;
+@forward 'config';
 
-// .z-button{}
+// .z-button {}
 @mixin b($block) {
-  $B: $namespace + "-" + $block;
-  .#{$B} {
+  $blockName: $namespace + '-' + $block !global;
+  .#{$blockName} {
     @content;
   }
 }
@@ -37,4 +37,15 @@
   color: $color;
   background: $background-color;
   border-color: $border-color;
+}
+
+
+$color-white: #fff;
+// 循环语法 each
+@mixin status($color) {
+  @each $key, $value in $color {
+    @include m($key) {
+      @include button-variant($color-white, $value, $value);
+    }
+  }
 }

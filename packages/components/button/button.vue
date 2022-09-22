@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { createNamespace } from '@zhangli-hua/utils/create'
 import LoadingComponent from '@zhangli-hua/components/internal-icon/Loading'
-import { buttonProps, buttonEmits } from '../button'
 import { useSlots } from 'vue'
+import { buttonProps, buttonEmits } from './button'
 defineOptions({
   name: 'z-button'
 })

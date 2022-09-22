@@ -1,6 +1,23 @@
 @use 'mixins/mixins' as *;
 @use 'common/var' as *;
 
+$color-list: (
+  primary: $color-primary,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger,
+  info: $color-info,
+);
+
+// @mixin status($color) {
+//   @each $key, $value in $color {
+//       @include m($key) {
+//         background: #{$value};
+//         // @include button-variant($color-white, $value, $value);
+//       }
+//   }
+// }
+
 @include b(button) {
   //BEM规范
   display: inline-flex;
@@ -14,6 +31,8 @@
   line-height: 1;
   vertical-align: middle;
   padding: 0 20px;
+
+  @include status($color-list);
 
   @include m(medium) {
     padding: 0 20px;
@@ -40,21 +59,22 @@
     border-radius: 20px;
   }
 
-  @include m(primary) {
-    @include button-variant($color-white, $color-primary, $color-primary);
-  }
-  @include m(success) {
-    @include button-variant($color-white, $color-success, $color-success);
-  }
-  @include m(warning) {
-    @include button-variant($color-white, $color-warning, $color-warning);
-  }
-  @include m(danger) {
-    @include button-variant($color-white, $color-danger, $color-danger);
-  }
-  @include m(info) {
-    @include button-variant($color-white, $color-info, $color-info);
-  }
+
+  // @include m(primary) {
+  //   @include button-variant($color-white, $color-primary, $color-primary);
+  // }
+  // @include m(success) {
+  //   @include button-variant($color-white, $color-success, $color-success);
+  // }
+  // @include m(warning) {
+  //   @include button-variant($color-white, $color-warning, $color-warning);
+  // }
+  // @include m(danger) {
+  //   @include button-variant($color-white, $color-danger, $color-danger);
+  // }
+  // @include m(info) {
+  //   @include button-variant($color-white, $color-info, $color-info);
+  // }
 }
 
 @keyframes rotate {

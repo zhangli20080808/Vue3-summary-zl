@@ -100,12 +100,30 @@ const handleClick = e => {
     icon-placement="left"
     @click="handleClick"
   >
-    vue3按钮
+    primary
     <template #icon>
       <z-icon>
         <AddCircle></AddCircle>
       </z-icon>
     </template>
+  </z-button>
+  <z-button
+    type="info"
+    size="small"
+    :round="true"
+    :disabled="false"
+    @click="handleClick"
+  >
+    vue3按钮
+  </z-button>
+  <z-button
+    type="danger"
+    size="small"
+    :round="true"
+    :disabled="false"
+    @click="handleClick"
+  >
+    vue3按钮
   </z-button>
   <z-input>
     <template #prepend>前缀</template>
