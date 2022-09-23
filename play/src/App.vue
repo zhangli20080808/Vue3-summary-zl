@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AddCircle } from '@vicons/ionicons5'
+import { CashOutline } from '@vicons/ionicons5'
 import { TreeOption } from '@zhangli-hua/components/tree/src/tree'
 import { ref } from 'vue'
 
@@ -114,7 +114,7 @@ const handleClick = e => {
     :disabled="false"
     @click="handleClick"
   >
-    vue3按钮
+    info
   </z-button>
   <z-button
     type="danger"
@@ -122,8 +122,10 @@ const handleClick = e => {
     :round="true"
     :disabled="false"
     @click="handleClick"
+    icon=""
   >
-    vue3按钮
+  <CashOutline/>
+    danger
   </z-button>
   <z-input>
     <template #prepend>前缀</template>

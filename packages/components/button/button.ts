@@ -50,6 +50,10 @@ export const buttonProps = {
   },
   iconPlacement: {
     type: String as PropType<Placement>,
+    default: 'left'
+  },
+  icon: {
+    type: String,
     default: ''
   }
 } as const

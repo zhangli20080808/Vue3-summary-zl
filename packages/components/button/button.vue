@@ -33,7 +33,7 @@ const emitMouseDown = (e: MouseEvent) => {
     @click="emitClick"
     @mousedown="emitMouseDown"
   >
-    <template v-if="iconPlacement === 'left'">
+    <template v-if="iconPlacement === 'left' && icon">
       <z-icon>
         <LoadingComponent v-if="loading" />
         <template v-else-if="slots.icon">
@@ -41,8 +41,9 @@ const emitMouseDown = (e: MouseEvent) => {
         </template>
       </z-icon>
     </template>
-    <slot></slot>
-    <template v-if="iconPlacement === 'right'">
+    <!-- 默认插槽 -->
+    <span v-if="slots.default"> <slot></slot></span>
+    <template v-if="iconPlacement === 'right' && icon">
       <z-icon>
         <LoadingComponent v-if="loading"></LoadingComponent>
         <template v-else-if="slots.icon">
