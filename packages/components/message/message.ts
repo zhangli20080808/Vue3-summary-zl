@@ -1,21 +1,27 @@
-import { PropType, VNode } from 'vue'
+import { ExtractPropTypes, PropType, VNode } from 'vue'
 import { definePropType } from '@zhangli-hua/utils'
-// type 类型  info/success/warning/error
-
+import { Mutable } from '@zhangli-hua/utils/typescript'
 export const messageDefaults = {
   // customClass: '',
   // center: false,
   dangerouslyUseHTMLString: false,
   duration: 3000,
+  id: '',
   message: '',
-  type: 'success'
+  type: 'success',
+  offset: 16
 } as const
 
 export type IconPropType = 'info' | 'success' | 'warning' | 'error'
 export const messageProps = {
   type: {
     type: String as PropType<IconPropType>,
-    default: 'success'
+    default: messageDefaults.message
+  },
+  // 每弹出一个框，就做一个标记
+  id: {
+    type: String,
+    default: messageDefaults.id
   },
   message: {
     type: definePropType<string | VNode | (() => VNode)>([
@@ -24,9 +30,34 @@ export const messageProps = {
       Function
     ]),
     default: messageDefaults.message
+  },
+  duration: {
+    type: Number,
+    default: messageDefaults.duration
+  },
+  center: {
+    type: Boolean
+  },
+  offset: {
+    type: Number,
+    default: messageDefaults.offset
+  },
+  onClose: {
+    type: definePropType<() => void>(Function)
   }
 }
+
 export const messageEmits = {
-  click: (e: MouseEvent) => e instanceof MouseEvent
-  // ...
+  destroy: () => true
 }
+
+export type MessageOptions = Partial<
+  Mutable<
+    Omit<MessageProps, 'id'> & {
+      appendTo?: HTMLElement | string
+    }
+  >
+>
+
+export type MessageProps = ExtractPropTypes<typeof messageProps>
+export type MessageEmits = typeof messageEmits
