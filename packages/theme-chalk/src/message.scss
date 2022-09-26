@@ -27,9 +27,15 @@ $message-color-list: (
   height: 40px;
   background: red;
   color: #fff;
+  transition: all 0.2s linear;
 
   @include status($message-color-list);
   @include when(center) {
     text-align: center;
   }
+}
+.z-message-fade-enter-from,
+.z-message-fade-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
 }

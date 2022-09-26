@@ -13,10 +13,22 @@ const Message = (options: MessageParams) => {
       message: options
     }
   }
+  const userClose = options.onClose
+  const opts = {
+    ...options,
+    onClose: () => {
+      // 移除dom
+      console.log('remove dom')
+      userClose?.() // userClose && userClose()
+    }
+  }
   // 此处肯定是对象
   const container = document.createElement('div')
   // 渲染组件
-  const vm = createVNode(MessageComponent, options)
+  const vm = createVNode(MessageComponent, opts)
+  vm.props!.onDestroy = () => {
+    render(null, container) // render移除dom
+  }
   render(vm, container)
   document.body.appendChild(container.firstElementChild!)
 }

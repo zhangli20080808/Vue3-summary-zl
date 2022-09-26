@@ -3,6 +3,7 @@ import { CashOutline } from '@vicons/ionicons5'
 import { TreeOption } from '@zhangli-hua/components/tree/src/tree'
 import { ref } from 'vue'
 import { Message } from '@zhangli-hua/components/message'
+import Button from '@zhangli-hua/components/button/button.vue'
 
 // function createData(level = 4, parentKey = ''): any {
 //   if (!level) return []
@@ -149,5 +150,5 @@ const showMessage = () => {
     </template>
     <template #append> 后缀 </template>
   </z-input>
-  <button @click="showMessage">显示message</button>
+  <Button @click="showMessage">显示message</Button>
 </template>
