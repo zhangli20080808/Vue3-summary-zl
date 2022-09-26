@@ -56,7 +56,7 @@ pnpm create vite play --template vue-ts
 "dev": "pnpm -C play dev"
 ```
 
-### scss 编写
+### scss 编写 - BEM规范命名
 
 1. 目录结构
 
@@ -75,6 +75,12 @@ $namespace: 'z';
 $element-separator: '__';
 $modifier-separator:'--';
 $state-prefix:'is-';
+
+// <div class="z-xxx is-center is-disabled is-readonly z-xxx--primary z-xxx-small">
+//   <div class="z-xxx__header"></div>
+//   <div class="z-xxx__body"></div>
+//   <div class="z-xxx__footer"></div>
+// </div>
 
 // mixins/mixins.scss mport语法可能有多次引入的缺陷，use相对比较好 将config包引入，且导出
 @use "config" as *;

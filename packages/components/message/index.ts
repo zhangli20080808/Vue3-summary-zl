@@ -1,19 +1,14 @@
 /**
-Button 组件是可以单独引用的
-import { Button } from 'zl-xxx'
-app.use(Button)
+Message 组件是可以单独引用的
+import { Message } from 'zl-xxx'
+app.use(Message)
 */
 import { withInstall } from '@zhangli-hua/utils/with-install'
-import _Message from './message.vue'
-
-
-
-
-
-
-
+import _Message from './message'
 
 const Message = withInstall(_Message)
+
+export { Message }
 
 export default Message
 
@@ -23,4 +18,4 @@ declare module 'vue' {
   }
 }
 
-export * from './message'
+export * from './type'

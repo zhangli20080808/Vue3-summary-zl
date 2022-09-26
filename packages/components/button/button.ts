@@ -39,7 +39,7 @@ export const buttonProps = {
       }
       return true
     },
-    default: ''
+    default: 'primary'
   },
   round: Boolean,
   loading: Boolean,

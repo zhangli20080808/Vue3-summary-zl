@@ -1,63 +1,24 @@
-import { ExtractPropTypes, PropType, VNode } from 'vue'
-import { definePropType } from '@zhangli-hua/utils'
-import { Mutable } from '@zhangli-hua/utils/typescript'
-export const messageDefaults = {
-  // customClass: '',
-  // center: false,
-  dangerouslyUseHTMLString: false,
-  duration: 3000,
-  id: '',
-  message: '',
-  type: 'success',
-  offset: 16
-} as const
-
-export type IconPropType = 'info' | 'success' | 'warning' | 'error'
-export const messageProps = {
-  type: {
-    type: String as PropType<IconPropType>,
-    default: messageDefaults.message
-  },
-  // 每弹出一个框，就做一个标记
-  id: {
-    type: String,
-    default: messageDefaults.id
-  },
-  message: {
-    type: definePropType<string | VNode | (() => VNode)>([
-      String,
-      Object,
-      Function
-    ]),
-    default: messageDefaults.message
-  },
-  duration: {
-    type: Number,
-    default: messageDefaults.duration
-  },
-  center: {
-    type: Boolean
-  },
-  offset: {
-    type: Number,
-    default: messageDefaults.offset
-  },
-  onClose: {
-    type: definePropType<() => void>(Function)
-  }
-}
-
-export const messageEmits = {
-  destroy: () => true
-}
-
-export type MessageOptions = Partial<
-  Mutable<
-    Omit<MessageProps, 'id'> & {
-      appendTo?: HTMLElement | string
+import { createVNode, render } from 'vue'
+import type { MessageParams } from './type'
+import MessageComponent from './message.vue'
+/**
+ * vue2中 - new Vue(render:()=>h(Message)).mount()
+ * vue3中 - createNode(component) => render(component.container)
+ * 思路 - 1.动态创建节点，手动挂载 2.将组件先变成虚拟节点 3. 然后在变成真实节点 render
+ * @param options
+ */
+const Message = (options: MessageParams) => {
+  if (typeof options === 'string') {
+    options = {
+      message: options
     }
-  >
->
+  }
+  // 此处肯定是对象
+  const container = document.createElement('div')
+  // 渲染组件
+  const vm = createVNode(MessageComponent, options)
+  render(vm, container)
+  document.body.appendChild(container.firstElementChild!)
+}
 
-export type MessageProps = ExtractPropTypes<typeof messageProps>
-export type MessageEmits = typeof messageEmits
+export default Message

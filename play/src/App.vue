@@ -2,7 +2,7 @@
 import { CashOutline } from '@vicons/ionicons5'
 import { TreeOption } from '@zhangli-hua/components/tree/src/tree'
 import { ref } from 'vue'
-import Message from '@zhangli-hua/components/message/message.vue';
+import { Message } from '@zhangli-hua/components/message'
 
 // function createData(level = 4, parentKey = ''): any {
 //   if (!level) return []
@@ -71,6 +71,9 @@ const handleLoad = (node: TreeOption) => {
 const handleClick = e => {
   console.log('click')
 }
+const showMessage = () => {
+  Message()
+}
 </script>
 
 <template>
@@ -122,10 +125,10 @@ const handleClick = e => {
     size="small"
     :round="true"
     :disabled="false"
-    @click="handleClick"
     icon=""
+    @click="handleClick"
   >
-  <CashOutline/>
+    <CashOutline />
     danger
   </z-button>
   <z-input>
@@ -142,5 +145,5 @@ const handleClick = e => {
     </template>
     <template #append> 后缀 </template>
   </z-input>
-  <Message></Message>
+  <button @click="showMessage">显示message</button>
 </template>

@@ -1,0 +1,15 @@
+@use 'mixins/mixins.scss' as *;
+
+@include b(message) {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 400px;
+  border-radius: 5px;
+  line-height: 40px;
+  height: 40px;
+  background: red;
+  color: #fff;
+  text-align: center;
+}

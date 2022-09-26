@@ -1,4 +1,11 @@
-$namespace: 'z';
-$element-separator: '__';
-$modifier-separator:'--';
-$state-prefix:'is-';
+// BEM规范 block element modifier
+$namespace: 'z'; // 修饰命名空间
+$element-separator: '__'; // 划分空间分隔符
+$modifier-separator: '--'; // 修饰类型
+$state-prefix: 'is-'; // 修饰状态
+
+// <div class="z-xxx is-center is-disabled is-readonly z-xxx--primary z-xxx-small">
+//   <div class="z-xxx__header"></div>
+//   <div class="z-xxx__body"></div>
+//   <div class="z-xxx__footer"></div>
+// </div>
