@@ -2,6 +2,7 @@
 import { CashOutline } from '@vicons/ionicons5'
 import { TreeOption } from '@zhangli-hua/components/tree/src/tree'
 import { ref } from 'vue'
+import Message from '@zhangli-hua/components/message/message.vue';
 
 // function createData(level = 4, parentKey = ''): any {
 //   if (!level) return []
@@ -141,4 +142,5 @@ const handleClick = e => {
     </template>
     <template #append> 后缀 </template>
   </z-input>
+  <Message></Message>
 </template>
