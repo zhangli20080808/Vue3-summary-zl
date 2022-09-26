@@ -8,10 +8,10 @@
     @content;
   }
 }
-// .z-button.is-desiabled
+// .z-button.is-disabled
 @mixin when($state) {
   @at-root {
-    &.#{$state-prefix + $state} {
+    &.#{$state-prefix + $state} { 
       @content;
     }
   }

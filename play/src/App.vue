@@ -72,7 +72,11 @@ const handleClick = e => {
   console.log('click')
 }
 const showMessage = () => {
-  Message()
+  Message({
+    message: 'i am is a message',
+    center: true,
+    type: 'danger'
+  })
 }
 </script>
 

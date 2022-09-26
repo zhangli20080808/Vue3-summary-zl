@@ -1,4 +1,20 @@
+@use 'common/var' as *;
 @use 'mixins/mixins.scss' as *;
+
+$message-color-list: (
+  info: $color-info,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger,
+);
+
+@mixin status($color) {
+  @each $key, $value in $color {
+    @include m($key) {
+      background: $value;
+    }
+  }
+}
 
 @include b(message) {
   position: fixed;
@@ -11,5 +27,9 @@
   height: 40px;
   background: red;
   color: #fff;
-  text-align: center;
+
+  @include status($message-color-list);
+  @include when(center) {
+    text-align: center;
+  }
 }

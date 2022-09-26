@@ -8,15 +8,15 @@ export const messageDefaults = {
   duration: 3000,
   id: '',
   message: '',
-  type: 'success',
+  type: 'info',
   offset: 16
 } as const
 
-export type IconPropType = 'info' | 'success' | 'warning' | 'error'
+export type IconPropType = 'info' | 'success' | 'warning' | 'danger'
 export const messageProps = {
   type: {
     type: String as PropType<IconPropType>,
-    default: messageDefaults.message
+    default: messageDefaults.type
   },
   // 每弹出一个框，就做一个标记
   id: {
