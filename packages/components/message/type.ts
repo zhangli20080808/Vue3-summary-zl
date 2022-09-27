@@ -9,7 +9,7 @@ export const messageDefaults = {
   id: '',
   message: '',
   type: 'info',
-  offset: 16
+  offset: 20
 } as const
 
 export type IconPropType = 'info' | 'success' | 'warning' | 'danger'

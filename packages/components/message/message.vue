@@ -6,6 +6,7 @@
   >
     <div
       v-show="visibleRef"
+      :style="styles"
       :class="[bem.b(), bem.m(type), bem.is('center', center)]"
     >
       message
@@ -14,12 +15,17 @@
 </template>
 <script setup lang="ts">
 import { messageProps, messageEmits } from './type'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { createNamespace } from '@zhangli-hua/utils/create'
 const bem = createNamespace('message')
 const emit = defineEmits(messageEmits)
 const props = defineProps(messageProps)
 const visibleRef = ref(false)
+const styles = computed(() => {
+  return {
+    top: `${props.offset}px`
+  }
+})
 let timer: any = null
 const startTimer = () => {
   timer = setTimeout(() => {

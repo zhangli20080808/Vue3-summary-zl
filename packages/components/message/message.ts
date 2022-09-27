@@ -1,6 +1,7 @@
-import { createVNode, render } from 'vue'
+import { createVNode, render, VNode } from 'vue'
 import type { MessageParams } from './type'
 import MessageComponent from './message.vue'
+const instances: VNode[] = []
 /**
  * vue2中 - new Vue(render:()=>h(Message)).mount()
  * vue3中 - createNode(component) => render(component.container)
@@ -13,12 +14,19 @@ const Message = (options: MessageParams) => {
       message: options
     }
   }
+  // 处理偏移值
+  let offset = options.offset || 20
+  instances.forEach(vm => {
+    offset += vm.el!.offsetHeight + 20
+  })
   const userClose = options.onClose
   const opts = {
     ...options,
+    offset,
     onClose: () => {
       // 移除dom
       console.log('remove dom')
+      // 根据id移除对应的message
       userClose?.() // userClose && userClose()
     }
   }
@@ -31,6 +39,7 @@ const Message = (options: MessageParams) => {
   }
   render(vm, container)
   document.body.appendChild(container.firstElementChild!)
+  instances.push(vm)
 }
 
 export default Message
