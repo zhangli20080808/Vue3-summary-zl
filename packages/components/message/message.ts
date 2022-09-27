@@ -1,7 +1,9 @@
 import { createVNode, render, VNode } from 'vue'
 import type { MessageParams } from './type'
 import MessageComponent from './message.vue'
-const instances: VNode[] = []
+let instances: any[] = []
+let seed = 1
+
 /**
  * vue2中 - new Vue(render:()=>h(Message)).mount()
  * vue3中 - createNode(component) => render(component.container)
@@ -16,9 +18,12 @@ const Message = (options: MessageParams) => {
   }
   // 处理偏移值
   let offset = options.offset || 20
-  instances.forEach(vm => {
-    offset += vm.el!.offsetHeight + 20
+  instances.forEach(item => {
+    offset += item!.vnode.el!.offsetHeight + 20
   })
+  const id = `message_${seed++}`
+  const container = document.createElement('div')
+
   const userClose = options.onClose
   const opts = {
     ...options,
@@ -26,20 +31,35 @@ const Message = (options: MessageParams) => {
     onClose: () => {
       // 移除dom
       console.log('remove dom')
-      // 根据id移除对应的message
       userClose?.() // userClose && userClose()
+      // 根据id移除对应的message
+      instances = instances.filter(instance => instance.id !== id)
+    },
+    onDestroy: () => {
+      render(null, container) // render移除dom
     }
   }
+
   // 此处肯定是对象
-  const container = document.createElement('div')
   // 渲染组件
-  const vm = createVNode(MessageComponent, opts)
-  vm.props!.onDestroy = () => {
-    render(null, container) // render移除dom
+  const vnode = createVNode(MessageComponent, opts)
+  console.log(vnode, 'vm')
+  // const handler = {
+  //   close: () => {
+  //     vnode.component!.exposed!.visible.value = false
+  //   }
+  // }
+  const instance = {
+    id,
+    vnode,
+    // handler
   }
-  render(vm, container)
+  // vnode.props!.onDestroy = () => {
+  //   render(null, container) // render移除dom
+  // }
+  render(vnode, container)
   document.body.appendChild(container.firstElementChild!)
-  instances.push(vm)
+  instances.push(instance)
 }
 
 export default Message
