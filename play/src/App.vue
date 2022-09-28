@@ -3,7 +3,6 @@ import { CashOutline } from '@vicons/ionicons5'
 import { TreeOption } from '@zhangli-hua/components/tree/src/tree'
 import { ref } from 'vue'
 import { Message } from '@zhangli-hua/components/message'
-import Button from '@zhangli-hua/components/button/button.vue'
 
 // function createData(level = 4, parentKey = ''): any {
 //   if (!level) return []
@@ -79,6 +78,7 @@ const showMessage = () => {
     type: 'danger'
   })
 }
+const check = ref(true)
 </script>
 
 <template>
@@ -150,5 +150,14 @@ const showMessage = () => {
     </template>
     <template #append> 后缀 </template>
   </z-input>
-  <Button @click="showMessage">显示message</Button>
+  <z-button @click="showMessage">显示message</z-button>
+  <br />
+  <z-checkbox
+    v-model="check"
+    label="节点"
+    :disabled="true"
+    :indeterminate="true"
+  >
+    节点2
+  </z-checkbox>
 </template>
