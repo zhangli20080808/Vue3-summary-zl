@@ -79,6 +79,9 @@ const showMessage = () => {
   })
 }
 const check = ref(true)
+const handleChange = (val: any) => {
+  console.log(val, 'val')
+}
 </script>
 
 <template>
@@ -145,6 +148,7 @@ const check = ref(true)
     </template>
     <template #sufixIcon>
       <z-icon>
+        123
         <AddCircle></AddCircle>
       </z-icon>
     </template>
@@ -153,10 +157,11 @@ const check = ref(true)
   <z-button @click="showMessage">显示message</z-button>
   <br />
   <z-checkbox
-    v-model="check"
     label="节点"
-    :disabled="true"
-    :indeterminate="true"
+    :model-value="true"
+    :disabled="false"
+    :indeterminate="false"
+    @change="handleChange"
   >
     节点2
   </z-checkbox>
